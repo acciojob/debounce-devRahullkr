@@ -1,7 +1,7 @@
 function debounce(callback, delay, immediate = false) {
-
+	 let timeoutId = null;
+return function debounced(...args) {
 	const context = this;
-
     if (immediate) {
       if (timeoutId === null) {
         // Leading edge
