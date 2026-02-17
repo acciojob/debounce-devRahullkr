@@ -14,7 +14,7 @@ function debounce(callback, delay, immediate = false) {
 		timeoutId = setTimeout(() => {
 			timeoutId = null
 
-			if(immediate){
+			if(!immediate){
 				callback.apply(context,args)
 			}
 
