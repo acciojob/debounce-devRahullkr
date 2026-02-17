@@ -19,10 +19,11 @@ function debounce(callback, delay, immediate = false) {
 			}
 
 			
-		},delay)
+		},delay);
+		
 		if(shouldCallImmediate){
-				callback.apply(context,args)
-			}
+			callback.apply(context,args)
+		}
 	}
   
   }
