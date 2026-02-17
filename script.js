@@ -1,30 +1,31 @@
 function debounce(callback, delay, immediate = false) {
 
-	let timeoutId = null
+	const context = this;
 
-	return function debounced(...args) {
-		const context = this
-		const shouldCallImmediate = immediate && timeoutId === null;
+    if (immediate) {
+      if (timeoutId === null) {
+        // Leading edge
+        callback.apply(context, args);
 
+        // Lock execution until delay passes
+        timeoutId = setTimeout(() => {
+          timeoutId = null;
+        }, delay);
+      }
 
-		if(timeoutId !== null){
-			clearTimeout(timeoutId)
-		}
+      return;
+    }
 
-		timeoutId = setTimeout(() => {
-			timeoutId = null
+    // Standard trailing debounce
+    if (timeoutId !== null) {
+      clearTimeout(timeoutId);
+    }
 
-			if(!immediate){
-				callback.apply(context,args)
-			}
-
-			
-		},delay);
-		
-		if(shouldCallImmediate){
-			callback.apply(context,args)
-		}
-	}
+    timeoutId = setTimeout(() => {
+      callback.apply(context, args);
+      timeoutId = null;
+    }, delay);
+  };
   
   }
   
