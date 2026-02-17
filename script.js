@@ -18,10 +18,11 @@ function debounce(callback, delay, immediate = false) {
 				callback.apply(context,args)
 			}
 
-			if(shouldCallImmediate){
+			
+		},delay)
+		if(shouldCallImmediate){
 				callback.apply(context,args)
 			}
-		},delay)
 	}
   
   }
